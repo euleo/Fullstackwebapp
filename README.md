@@ -2,7 +2,7 @@
 
 WebApp per la gestione di utenti e commenti.
 
-##Setup
+##Setup##
 
 DataBase utilizzato: mysql. Nel file Backend/config/db.js inserire i dati necessari alla connessione col DB.
 Sequelize crea le tabelle user e comment, ma è necessario che esista un database chiamato "fullstackwebapp".
@@ -19,7 +19,7 @@ Per avviare il Frontend, dalla sua cartella digitare il comando "ng serve".
 
 Aprire la webapp all'indirizzo http://localhost:4200/login
 
-#Schermate
+##Schermate##
 
 /login: pagina iniziale di login 
 /register: pagina di registrazione nuovo utente.
