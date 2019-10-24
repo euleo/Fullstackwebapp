@@ -12,3 +12,10 @@ Per avviare il Backend, dalla sua cartella digitare il comando "node index.js".
 
 Per avviare il Frontend, dalla sua cartella digitare il comando "ng serve".
 
+DB: mysql, inserire le proprie credenziali nel file.. per la connessione
+Porta e indirizzo 
+
+Per cominciare andare all'indirizzo http://localhost:4200/login
+
+Schermate: /login, /register, /comments, /comments/:id, /users, /users:id
+
