@@ -21,9 +21,13 @@ Aprire la webapp all'indirizzo http://localhost:4200/login
 
 ##Schermate##
 
-/login: pagina iniziale di login 
+/login: pagina iniziale di login. 
+
 /register: pagina di registrazione nuovo utente.
+
 /comments: pagina alla quale si accede appena effettuato il login. Presenta una tabella con tutti i commenti. L'utente loggato potrà aggiungere nuovi commenti (bottone +) e potrà modificare/eliminare solo i propri commenti.
+
 /comments/id: pagina di creazione/modifica di un commento.
+
 /users/id: pagina di modifica dei dati utente, accessibile dalla pagina dei commenti (bottone MyProfile)
 
