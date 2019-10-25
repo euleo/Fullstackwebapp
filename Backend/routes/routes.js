@@ -3,13 +3,34 @@
 const bcrypt = require('bcrypt');
 const commentsService = require('../services/commentsService');
 const usersService = require('../services/usersService');
+const config = require('../configJwt');
+const rjwt = require('restify-jwt-community');
+const jwt = require('jsonwebtoken');
 
 module.exports = (server, db) => {
+  // using restify-jwt to lock down everything except /auth
+  server.use(rjwt(config.jwt).unless({
+    path: ['/login','/register']
+  }));
+
   //Users
   server.post('/login', (request, response, next) => {
-    console.log("login",request.body);
+    console.log("login", request.body);
     usersService.login(request.body).then(data => {
-      response.send(200, resp(true, 'success', data));
+      // creating jsonwebtoken using the secret from config.json
+      console.log("config.jwt.secret", config.jwt.secret);
+      console.log("data", data[0].dataValues);
+
+      let token = jwt.sign(data[0].dataValues, config.jwt.secret, {
+        expiresIn: '15m' // token expires in 15 minutes
+      });
+      console.log("token", token);
+
+      // retrieve issue and expiration times
+      let { iat, exp } = jwt.decode(token);
+      response.send({ iat, exp, token });
+
+      // response.send(200, resp(true, 'success', data));
     }).catch(err => {
       response.send(503, resp(true, 'failed', err));
     })
@@ -36,7 +57,7 @@ module.exports = (server, db) => {
     next();
   });
 
-  server.post('/users', (request, response, next) => {
+  server.post('/register', (request, response, next) => {
     console.log("insert");
     usersService.insertUser(request.params).then(data => {
       response.send(200, 'Utente inserito con successo');

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { User } from '../models/user';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -11,6 +12,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UsersService {
+  public loggedUser: User;
   private readonly usersApiUrl = `${environment.apiUrl}/users`;
 
   constructor(private http: HttpClient) { }
@@ -32,6 +34,6 @@ export class UsersService {
   }
 
   createUser(user): Observable<null> {
-    return this.http.post<any>(`${this.usersApiUrl}`,user);
+    return this.http.post<any>(`${environment.apiUrl}/register`,user);
   }
 }

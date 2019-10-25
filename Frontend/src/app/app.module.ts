@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +15,10 @@ import {
   MatToolbarModule, MatMenuModule,MatIconModule, MatProgressSpinnerModule
 } from '@angular/material';
 import { RegistrationComponent } from './registration/registration.component';
+import { TokenStorage } from './token.storage';
+import { AuthGuard } from './auth.guard';
+import { JwtInterceptor } from './jwt.interceptor';
+import { ErrorHandlerImpl } from './error.handler';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,12 @@ import { RegistrationComponent } from './registration/registration.component';
     MatIconModule,
     MatProgressSpinnerModule
   ],
-  providers: [],
+  providers: [
+    TokenStorage,
+    AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    { provide: ErrorHandler, useClass: ErrorHandlerImpl}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

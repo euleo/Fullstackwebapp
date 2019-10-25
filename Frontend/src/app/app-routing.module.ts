@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -16,10 +17,12 @@ const routes: Routes = [
   {
     path: 'comments',
     loadChildren: './comments/comments.module#CommentsModule',
+    canActivate: [AuthGuard]
   },
   {
     path: 'users',
     loadChildren: './users/users.module#UsersModule',
+    canActivate: [AuthGuard]
   }
 ];
 
