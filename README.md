@@ -29,7 +29,7 @@ Aprire la webapp all'indirizzo http://localhost:4200/login
 
 /register: pagina di registrazione nuovo utente.
 
-/comments: pagina alla quale si accede appena effettuato il login. Presenta una tabella con tutti i commenti di tutti gli utenti. L'utente loggato potrà aggiungere nuovi commenti (bottone +) e potrà modificare/eliminare solo i propri commenti.
+/comments: pagina alla quale si accede appena effettuato il login. Presenta una tabella con tutti i commenti di tutti gli utenti. L'utente loggato potrà aggiungere nuovi commenti (bottone +) e potrà modificare/eliminare solo i propri commenti.In alto a sinistra c'è un bottone "My Profile" per andare al proprio profilo (vedi /users/id), un bottone users visibile solo agli utenti "admin" (vedi /users), un bottone di logout. 
 
 /comments/id: pagina di creazione/modifica di un commento.
 
