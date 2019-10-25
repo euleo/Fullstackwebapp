@@ -19,7 +19,6 @@ export class CommentsListComponent implements OnInit {
     private usersService: UsersService) { }
 
   ngOnInit() {
-    console.log("this.usersService.loggedUser.role",this.usersService.loggedUser.role);
     if(this.usersService.loggedUser.role === "admin"){
       this.showButton = true;
     }

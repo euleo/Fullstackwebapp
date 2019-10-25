@@ -15,22 +15,15 @@ module.exports = (server, db) => {
 
   //Users
   server.post('/login', (request, response, next) => {
-    console.log("login", request.body);
     usersService.login(request.body).then(data => {
       // creating jsonwebtoken using the secret from config.json
-      console.log("config.jwt.secret", config.jwt.secret);
-      console.log("data", data[0].dataValues);
-
       let token = jwt.sign(data[0].dataValues, config.jwt.secret, {
         expiresIn: '15m' // token expires in 15 minutes
       });
-      console.log("token", token);
 
       // retrieve issue and expiration times
       let { iat, exp } = jwt.decode(token);
       response.send({ iat, exp, token });
-
-      // response.send(200, resp(true, 'success', data));
     }).catch(err => {
       response.send(503, resp(true, 'failed', err));
     })
@@ -38,7 +31,6 @@ module.exports = (server, db) => {
   });
 
   server.get('/users', (request, response, next) => {
-    console.log("get users");
     usersService.getUsers().then(data => {
       response.send(200, data);
     }).catch(err => {
@@ -48,7 +40,6 @@ module.exports = (server, db) => {
   });
 
   server.get('/user/:id', (request, response, next) => {
-    console.log("getbyId");
     usersService.getUserById(request.params).then(data => {
       response.send(200, data);
     }).catch(err => {
@@ -58,7 +49,6 @@ module.exports = (server, db) => {
   });
 
   server.post('/register', (request, response, next) => {
-    console.log("insert");
     usersService.insertUser(request.params).then(data => {
       response.send(200, 'Utente inserito con successo');
     }).catch(err => {
@@ -68,7 +58,6 @@ module.exports = (server, db) => {
   });
 
   server.put('/users/:id', (request, response, next) => {
-    console.log("update");
     usersService.updateUser(request.params).then(data => {
       response.send(200, 'Utente modificato con successo');
     }).catch(err => {
@@ -78,7 +67,6 @@ module.exports = (server, db) => {
   });
 
   server.del('/users/:id', (request, response, next) => {
-    console.log("delete");
     usersService.deleteUser(request.params).then(data => {
       response.send(200, resp(true, 'Utente eliminato con successo', data));
     }).catch(err => {
@@ -89,7 +77,6 @@ module.exports = (server, db) => {
 
   //Comments
   server.get('/comments', (request, response, next) => {
-    console.log("get comments");
     commentsService.getComments().then(data => {
       response.send(200, data);
     }).catch(err => {
@@ -99,7 +86,6 @@ module.exports = (server, db) => {
   });
 
   server.get('/comments/:id', (request, response, next) => {
-    console.log("getbyUserId");
     commentsService.getCommentsByUserId(request.params).then(data => {
       response.send(200, data);
     }).catch(err => {
@@ -109,7 +95,6 @@ module.exports = (server, db) => {
   });
 
   server.get('/comment/:id', (request, response, next) => {
-    console.log("getbyId");
     commentsService.getCommentById(request.params).then(data => {
       response.send(200, data);
     }).catch(err => {
@@ -119,9 +104,6 @@ module.exports = (server, db) => {
   });
 
   server.post('/comments', (request, response, next) => {
-    console.log("insert body", request.body);
-    console.log("insert params", request.params);
-
     request.body.created_at = new Date();
     commentsService.insertComment(request.body).then(data => {
       response.send(200, 'Commento inserito con successo');
@@ -132,7 +114,6 @@ module.exports = (server, db) => {
   });
 
   server.put('/comments/:id', (request, response, next) => {
-    console.log("update");
     commentsService.updateComment(request.params).then(data => {
       response.send(200, 'Commento modificato con successo');
     }).catch(err => {
@@ -142,7 +123,6 @@ module.exports = (server, db) => {
   });
 
   server.del('/comments/:id', (request, response, next) => {
-    console.log("delete");
     commentsService.deleteComment(request.params).then(data => {
       response.send(200, resp(true, 'Commento eliminato con successo', data));
     }).catch(err => {
@@ -150,149 +130,6 @@ module.exports = (server, db) => {
     })
     next();
   });
-
-
-  // server.post('/login', (req, res) => {
-  //   console.log("login");
-  //   db.users.findAll({ where: { "email": req.params.email } })
-  //     .then(user => {
-  //       if (checkPassword(req.params.password, user[0].dataValues.password)) {
-  //         console.log("Passwords match");// Passwords match
-  //       }
-  //       else {
-  //         console.log("Passwords don't match");
-  //         // return next(core.errorToRestifyError({ code: 400, reason: 'login errato (password non corretta)' }));
-  //       }
-  //       res.json(user);
-  //     });
-  // });
-
-  // server.get('/users', (req, res) => {
-  //   db.users.findAll({
-  //     include: [
-  //       {
-  //         model: db.comments
-  //       }
-  //     ]
-  //   }).then(users => {
-  //     const resObj = users.map(user => {
-
-  //       //tidy up the user data
-  //       return Object.assign(
-  //         {},
-  //         {
-  //           user
-  //         }
-  //       )
-  //     });
-  //     res.json(resObj)
-  //   });
-  // });
-
-  // server.get('/user/:id', (req, res) => {
-  //   console.log("getUserById");
-  //   db.users.findAll({ where: { "id": req.params.id } })
-  //     .then(user => {
-  //       res.json(user);
-  //     });
-  // });
-
-  // server.post('/users', (req, res) => {
-  //   console.log("insertUser");
-  //   req.params.password = hashPassword(req.params.password);
-  //   db.users.create(req.params)
-  //     .then(user => {
-  //       res.json(user);
-  //     });
-  // });
-
-  // server.put('/users/:id', (req, res) => {
-  //   console.log("update user", req.params.id);
-  //   db.users.update(req.params, { where: { "id": req.params.id } })
-  //     .then(user => {
-  //       res.json(user);
-  //     });
-  // });
-
-  // server.del('/users/:id', (req, res) => {
-  //   console.log("delete user");
-  //   db.users.destroy({ where: { "id": req.params.id } })
-  //     .then(user => {
-  //       res.json(user);
-  //     });
-  // });
-
-
-
-
-
-
-
-
-  // server.get('/comments', (req, res) => {
-  //   db.comments.findAll({
-  //     include: [
-  //       {
-  //         model: db.users
-  //       }
-  //     ]
-  //   }).then(comments => {
-  //     const resObj = comments.map(comment => {
-
-  //       //tidy up the user data
-  //       return Object.assign(
-  //         {},
-  //         {
-  //           comment
-  //         }
-  //       )
-  //     });
-  //     res.json(resObj)
-  //   });
-  // });
-
-  // server.get('/comment/:id', (req, res) => {
-  //   console.log("getCommentById");
-  //   db.comments.findAll({ where: { "id": req.params.id } })
-  //     .then(comment => {
-  //       res.json(comment);
-  //     });
-  // });
-
-  // server.get('/comments/:id', (req, res) => {
-  //   console.log("getCommentsByUserId");
-  //   db.comments.findAll({ where: { "userId": req.params.userId } })
-  //     .then(comment => {
-  //       res.json(comment);
-  //     });
-  // });
-
-  // server.post('/comments', (req, res) => {
-  //   console.log("insertComment");
-  //   req.params.created_at = new Date();
-  //   db.comments.create(req.params)
-  //     .then(comment => {
-  //       res.json(comment);
-  //     });
-  // });
-
-  // server.put('/comments/:id', (req, res) => {
-  //   console.log("update comment", req.params.id);
-  //   db.comments.update(req.params, { where: { "id": req.params.id } })
-  //     .then(comment => {
-  //       res.json(comment);
-  //     });
-  // });
-
-  // server.del('/comments/:id', (req, res) => {
-  //   console.log("delete comment");
-  //   db.comments.destroy({ where: { "id": req.params.id } })
-  //     .then(res => resolve(res))
-  //   // ).catch(err => {
-  //   //     console.log(`errore nell'eliminare un commento: ${err};`);
-  //   //     reject(err);
-  //   //   });
-  // });
 
   const checkPassword = (pwd1, pwd2) => {
     return bcrypt.compareSync(pwd1, pwd2);

@@ -23,7 +23,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   register(): void {
-    console.log("role", this.user.role);
     if (this.user.email && this.user.password && this.user.name && this.user.surname && this.user.role) {
       this.userService.createUser(this.user)
         .subscribe(user => {

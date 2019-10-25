@@ -25,9 +25,6 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
     }
-    // , {
-    //         underscored: true
-    //     }
     );
     return Comment;
 };

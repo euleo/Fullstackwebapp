@@ -6,10 +6,8 @@ const bcrypt = require('bcrypt');
 function login(data){
     return new Promise((resolve, reject, next) =>{
         usersModel.findAll({ where: {"email": data.email }}).then(res => {
-            console.log("data.password",data.password);
-            console.log("res[0].dataValues.password",res[0].dataValues.password);
             if(checkPassword(data.password, res[0].dataValues.password)) {
-                console.log("Passwords match");// Passwords match
+                console.log("Passwords match");
                 resolve(res);
             }
             else {

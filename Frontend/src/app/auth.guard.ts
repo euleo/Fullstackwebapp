@@ -8,14 +8,11 @@ export class AuthGuard implements CanActivate {
               private router: Router) { }
 
   canActivate(): boolean {
-    console.log("canActivate");
     if (!this.tokenStorage.getToken()) {
-      console.log("canActivate false");
       this.router.navigateByUrl('/login');
       alert("You don't have permission, please login");
       return false;
     }
-    console.log("canActivate true");
     return true;
   }
 }

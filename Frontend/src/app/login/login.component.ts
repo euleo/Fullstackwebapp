@@ -31,24 +31,16 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    console.log("login");
     if (this.email && this.password) {
       this.loginService.login(this.email, this.password)
         .subscribe(response => {
-
-          console.log("response", response);
-          console.log("response.token", response.token);
-
           if (response && response.token) {
             const rawtoken = response.token;
-            console.log("rawtoken: " + rawtoken);
             this.tokenStorage.saveToken(rawtoken);
             this.userService.loggedUser = this.jwtHelperServive.decodeToken(rawtoken);
-            console.log("user: ", this.userService.loggedUser);
             this.router.navigateByUrl('/comments');
           }
           else {
-            console.log("error", response);
             alert("Authentication Error");
           }
         });

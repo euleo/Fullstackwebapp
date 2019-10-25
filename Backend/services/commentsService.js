@@ -72,7 +72,6 @@ function updateComment(data) {
 
 function deleteComment(data) {
     return new Promise((resolve, reject) => {
-        console.log("service data.id", data.id);
         commentsModel.destroy({ where: { id: data.id } }).then(res => {
             resolve(res);
         }).catch(err => {

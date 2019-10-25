@@ -21,15 +21,12 @@ export class UsersListComponent implements OnInit {
   }
 
   loadUsers() {
-    console.log("loadUsers");
     this.usersService.getAllUsers().subscribe(res => {
-      console.log("loadUsers res",res);
       this.users = res;
     });
   }
 
   save(user: User){
-    console.log("save",user);
     this.usersService.updateUser(user)
     .subscribe(res => {
       this.router.navigate(["comments"]);
