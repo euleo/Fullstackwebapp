@@ -27,13 +27,10 @@ module.exports = (sequelize, DataTypes) => {
         },
         role: {
             type: DataTypes.ENUM,
-            values: ['user', 'admin', 'disabled']
+            values: ['admin', 'normal']
 
         }
     }
-    // , {
-    //         underscored: true
-    //     }
     );
     return User;
 };

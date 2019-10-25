@@ -23,6 +23,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   register(): void {
+    console.log("role", this.user.role);
     if (this.user.email && this.user.password && this.user.name && this.user.surname && this.user.role) {
       this.userService.createUser(this.user)
         .subscribe(user => {
@@ -31,5 +32,9 @@ export class RegistrationComponent implements OnInit {
     } else {
       alert("Please fill all fields");
     }
+  }
+
+  goBack(): void {
+    this.router.navigateByUrl('/login');
   }
 }

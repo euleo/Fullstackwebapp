@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AuthGuard } from './auth.guard';
+import { LogoutComponent } from './logout/logout.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -14,6 +15,7 @@ const routes: Routes = [
     path: 'register',
     component: RegistrationComponent
   },
+  { path: 'logout',  component: LogoutComponent },
   {
     path: 'comments',
     loadChildren: './comments/comments.module#CommentsModule',

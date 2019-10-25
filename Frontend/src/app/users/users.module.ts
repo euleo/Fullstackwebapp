@@ -5,7 +5,7 @@ import { UserDetailComponent } from './components/user-detail/user-detail.compon
 import { routing } from './users.routing';
 import {
   MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,
-  MatToolbarModule, MatMenuModule,MatIconModule, MatProgressSpinnerModule
+  MatToolbarModule, MatMenuModule,MatIconModule, MatProgressSpinnerModule, MatSelectModule
 } from '@angular/material';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -27,7 +27,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
     MatTableModule,
     MatMenuModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSelectModule
   ]
 })
 export class UsersModule { }

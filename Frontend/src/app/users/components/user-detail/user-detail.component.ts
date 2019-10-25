@@ -29,7 +29,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   save(): void {
-    if (this.user.email && this.user.name && this.user.surname) {
+    if (this.user.email && this.user.password && this.user.name && this.user.surname) {
       if (this.id > 0) {
         //modify
         this.usersService.updateUser(this.user)
@@ -47,5 +47,9 @@ export class UserDetailComponent implements OnInit {
     } else {
       alert("Please insert all fields");
     }
+  }
+
+  goBack(): void {
+    this.router.navigateByUrl('/comments');
   }
 }

@@ -12,7 +12,11 @@ export class ErrorHandlerImpl implements ErrorHandler {
   }
 
   handleError(error: Error | HttpErrorResponse): void {
-    console.log("handleError");
+    console.log("handleError",error);
+    console.log("handleError",error.name);
+
+    alert(error.message);
+
     if (error instanceof HttpErrorResponse) {
       if (error.status === 401) {
         alert('Unauthorized!');

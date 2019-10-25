@@ -60,4 +60,18 @@ table {
     padding: 5px;
   }
   .colonne{ font-weight: bold; font-size: 20px;}
+
+  .title {
+    text-align: center;
+    margin-top: 2%;
+  }
+
+  .buttons{
+    margin-bottom: 1%;
+  }
+
+  .divbutton{
+    margin-right: 0.2%;
+    margin-left: 0.2%;
+  }
   

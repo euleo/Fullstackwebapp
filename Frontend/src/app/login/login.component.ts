@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
             console.log("rawtoken: " + rawtoken);
             this.tokenStorage.saveToken(rawtoken);
             this.userService.loggedUser = this.jwtHelperServive.decodeToken(rawtoken);
-            console.log("user: ", this.userService.loggedUser.id);
+            console.log("user: ", this.userService.loggedUser);
             this.router.navigateByUrl('/comments');
           }
           else {

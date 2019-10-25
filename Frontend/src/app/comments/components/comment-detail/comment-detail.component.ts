@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommentsService } from '../../comments.service';
 import { Observable } from 'rxjs';
 import { Comment } from '../../../models/comment';
+import { UsersService } from '../../../users/users.service';
 
 @Component({
   selector: 'app-comment-detail',
@@ -15,7 +16,8 @@ export class CommentDetailComponent implements OnInit {
 
   constructor(private router: Router,
     private route: ActivatedRoute,
-    private commentsService: CommentsService) { }
+    private commentsService: CommentsService,
+    private usersService: UsersService) { }
 
   ngOnInit() {
     this.comment = new Comment();
@@ -39,7 +41,7 @@ export class CommentDetailComponent implements OnInit {
           });
       } else {
         //add
-        this.comment.userId = +localStorage.getItem("loggedUserId");
+        this.comment.userId = this.usersService.loggedUser.id;
         this.commentsService.createComment(this.comment)
           .subscribe(res => {
             this.router.navigate(["comments"]);
@@ -50,5 +52,8 @@ export class CommentDetailComponent implements OnInit {
       alert("Please insert all fields");
     }
   }
-
+  
+  goBack(): void {
+    this.router.navigateByUrl('/comments');
+  }
 }

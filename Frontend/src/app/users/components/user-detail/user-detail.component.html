@@ -15,6 +15,13 @@
                 <tr>
                     <td>
                         <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Password" type="password" [(ngModel)]="user.password" name="password" required>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field class="example-full-width">
                             <input matInput placeholder="Name" [(ngModel)]="user.name" name="name" required>
                         </mat-form-field>
                     </td>
@@ -32,5 +39,6 @@
     </mat-card-content>
     <mat-card-actions>
         <button mat-raised-button (click)="save()" color="primary">Save</button>
+        <button mat-raised-button (click)="goBack()" color="primary">Back</button>
     </mat-card-actions>
 </mat-card>
