@@ -14,7 +14,6 @@ function getComments() {
         }).then(res => {
             resolve(res);
         }).catch(err => {
-            console.log(`errore nel recuperare i commenti: ${err};`);
             reject(err);
         })
     });
@@ -27,7 +26,7 @@ function getCommentsByUserId(data) {
         }).then(res => {
             resolve(res);
         }).catch(err => {
-            console.log(`errore nel recuperare gli utenti: ${err};`);
+            (`errore nel recuperare gli utenti: ${err};`);
             reject(err);
         })
     });
@@ -40,7 +39,6 @@ function getCommentById(data) {
         }).then(res => {
             resolve(res);
         }).catch(err => {
-            console.log(`errore nel recuperare gli utenti: ${err};`);
             reject(err);
         })
     });
@@ -51,7 +49,6 @@ function insertComment(data) {
         commentsModel.create(data).then(res => {
             resolve(res);
         }).catch(err => {
-            console.log(`errore nell'inserire un utente: ${err};`);
             reject(err);
         })
     });
@@ -64,7 +61,6 @@ function updateComment(data) {
         }).then(res => {
             resolve(res);
         }).catch(err => {
-            console.log(`errore nel modificare un utente: ${err};`);
             reject(err);
         })
     });
@@ -75,7 +71,6 @@ function deleteComment(data) {
         commentsModel.destroy({ where: { id: data.id } }).then(res => {
             resolve(res);
         }).catch(err => {
-            console.log(`errore nell'eliminare un utente: ${err};`);
             reject(err);
         });
     });

@@ -25,7 +25,7 @@ module.exports = (server, db) => {
       let { iat, exp } = jwt.decode(token);
       response.send({ iat, exp, token });
     }).catch(err => {
-      response.send(503, resp(true, 'failed', err));
+      response.send(503, resp(false, 'failed', "Incorrect email or password"));
     })
     next();
   });
@@ -34,7 +34,7 @@ module.exports = (server, db) => {
     usersService.getUsers().then(data => {
       response.send(200, data);
     }).catch(err => {
-      response.send(503, resp(true, 'failed', err));
+      response.send(503, resp(false, 'failed', err));
     })
     next();
   });
@@ -52,7 +52,7 @@ module.exports = (server, db) => {
     usersService.insertUser(request.params).then(data => {
       response.send(200, 'Utente inserito con successo');
     }).catch(err => {
-      response.send(400, err);
+      response.send(400, resp(false, 'failed', "Email already existing"));
     })
     next();
   });
@@ -80,7 +80,7 @@ module.exports = (server, db) => {
     commentsService.getComments().then(data => {
       response.send(200, data);
     }).catch(err => {
-      response.send(503, resp(true, 'failed', err));
+      response.send(503, resp(false, 'failed', err));
     })
     next();
   });

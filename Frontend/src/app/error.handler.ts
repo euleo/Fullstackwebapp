@@ -10,8 +10,8 @@ export class ErrorHandlerImpl implements ErrorHandler {
     return this.injector.get(Router);
   }
 
-  handleError(error: Error | HttpErrorResponse): void {
-    alert(error.message);
+  handleError(error: any | HttpErrorResponse): void {
+    alert(error.error.details);
     if (error instanceof HttpErrorResponse) {
       if (error.status === 401) {
         alert('Unauthorized!');

@@ -4,6 +4,8 @@ WebApp per la gestione di utenti e commenti.
 
 ##Info##
 
+IDE utilizzato: Visual Studio Code.
+
 DataBase utilizzato: mysql. Nel file Backend/config/db.js inserire i dati necessari alla connessione col DB.
 Sequelize crea le tabelle user e comment, ma è necessario che esista un database chiamato "fullstackwebapp".
 
