@@ -13,7 +13,7 @@ Frontend realizzato in Angular.
 
 Autenticazione tramite JWT realizzata con le librerie jsonwebtoken in NodeJS e @auth0/angular-jwt in Angular.
 
-##Setup##
+##Setup e Run##
 
 Una volta clonata la repository, sia nella cartella Backend che nella cartella Frontend eseguire da terminale il comando "npm install" per scaricare tutti i moduli necessari.
 
