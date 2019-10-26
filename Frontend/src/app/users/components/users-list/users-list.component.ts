@@ -29,6 +29,9 @@ export class UsersListComponent implements OnInit {
   save(user: User){
     this.usersService.updateUser(user)
     .subscribe(res => {
+      if(user.id == this.usersService.loggedUser.id){
+        this.usersService.loggedUser.role = user.role;      
+      }
       this.router.navigate(["comments"]);
     });
   }

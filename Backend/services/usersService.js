@@ -56,7 +56,6 @@ function insertUser(data){
 }
 
 function updateUser(data){
-    data.password = hashPassword(data.password);
     return new Promise((resolve, reject) =>{
         usersModel.update(data, {
             where: { id:data.id }
