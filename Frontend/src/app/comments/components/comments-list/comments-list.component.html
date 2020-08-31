@@ -1,55 +1,64 @@
-<h1 class="title">All Comments</h1>
+<mat-card style="margin: 50px;">
 
-<div class="buttons">
-    <button class="divbutton" mat-raised-button (click)="myProfile()" color="primary">My Profile</button>
-    <button class="divbutton" mat-raised-button *ngIf="showButton" (click)="goToUsers()" color="primary">Users</button>
-    <button class="divbutton" mat-raised-button (click)="logout()" color="primary">Logout</button>
-</div>
+    <mat-card-title style="text-align: center;">All Comments</mat-card-title>
+    <mat-card-content>
 
-<table mat-table [dataSource]="comments" class="mat-elevation-z8">
-    <ng-container matColumnDef="created_at">
-        <th mat-header-cell *matHeaderCellDef> Date </th>
-        <td mat-cell *matCellDef="let comment"> {{comment.created_at}} </td>
-    </ng-container>
+        <div class="buttons">
+            <button mat-button (click)="myProfile()" color="primary">My Profile</button>
+            <button mat-button *ngIf="showButton" (click)="goToUsers()" color="primary">Users</button>
+            <button mat-button (click)="logout()" color="primary">Logout</button>
+        </div>
 
-    <ng-container matColumnDef="author">
-        <th mat-header-cell *matHeaderCellDef> Author </th>
-        <td mat-cell *matCellDef="let comment"> {{comment.user.name}} {{comment.user.surname}} </td>
-    </ng-container>
+        <table mat-table [dataSource]="comments" class="mat-elevation-z8">
+            <ng-container matColumnDef="created_at">
+                <th mat-header-cell *matHeaderCellDef> Date </th>
+                <td mat-cell *matCellDef="let comment"> {{comment.created_at}} </td>
+            </ng-container>
 
-    <ng-container matColumnDef="title">
-        <th mat-header-cell *matHeaderCellDef> Title </th>
-        <td mat-cell *matCellDef="let comment"> {{comment.title}} </td>
-    </ng-container>
+            <ng-container matColumnDef="author">
+                <th mat-header-cell *matHeaderCellDef> Author </th>
+                <td mat-cell *matCellDef="let comment"> {{comment.user.name}} {{comment.user.surname}} </td>
+            </ng-container>
 
-    <ng-container matColumnDef="body">
-        <th mat-header-cell *matHeaderCellDef> Body </th>
-        <td mat-cell *matCellDef="let comment"> {{comment.body}} </td>
-    </ng-container>
+            <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef> Title </th>
+                <td mat-cell *matCellDef="let comment"> {{comment.title}} </td>
+            </ng-container>
 
-    <ng-container matColumnDef="modify">
-        <th mat-header-cell *matHeaderCellDef>
-            <button mat-raised-button color="primary" class="add-button" (click)="add()" placement="bottom" mat-icon-button matTooltip="Aggiungi">
-                <mat-icon>add</mat-icon>
+            <ng-container matColumnDef="body">
+                <th mat-header-cell *matHeaderCellDef> Body </th>
+                <td mat-cell *matCellDef="let comment"> {{comment.body}} </td>
+            </ng-container>
 
-            </button>
-        </th>
-        <td mat-cell *matCellDef="let comment">
-            <button *ngIf="comment.userId == this.usersService.loggedUser.id" mat-raised-button color="primary" (click)="edit(comment)" mat-icon-button placement="bottom" matTooltip="Modifica">
-                <mat-icon>edit</mat-icon>
-            </button>
-        </td>
-    </ng-container>
+            <ng-container matColumnDef="modify">
+                <th mat-header-cell *matHeaderCellDef>
+                    <button mat-raised-button color="primary" class="add-button" (click)="add()" placement="bottom"
+                        mat-icon-button matTooltip="Aggiungi">
+                        <mat-icon>add</mat-icon>
 
-    <ng-container matColumnDef="cancel">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let comment">
-            <button *ngIf="comment.userId == this.usersService.loggedUser.id" mat-raised-button color="warn" (click)="delete(comment.id)" mat-icon-button matTooltip="Elimina">
-                <mat-icon> delete</mat-icon>
-            </button>
-        </td>
-    </ng-container>
+                    </button>
+                </th>
+                <td mat-cell *matCellDef="let comment">
+                    <button *ngIf="comment.userId == this.usersService.loggedUser.id" mat-raised-button color="primary"
+                        (click)="edit(comment)" mat-icon-button placement="bottom" matTooltip="Modifica">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+            <ng-container matColumnDef="cancel">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let comment">
+                    <button *ngIf="comment.userId == this.usersService.loggedUser.id" mat-raised-button color="warn"
+                        (click)="delete(comment.id)" mat-icon-button matTooltip="Elimina">
+                        <mat-icon> delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+    </mat-card-content>
+</mat-card>
