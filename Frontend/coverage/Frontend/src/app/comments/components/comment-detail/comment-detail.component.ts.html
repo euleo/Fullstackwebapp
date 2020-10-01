@@ -207,7 +207,7 @@ export class CommentDetailComponent implements OnInit {
           });
       } else {
         //add
-<span class="cstat-no" title="statement not covered" >        this.comment.userId = this.usersService.loggedUser.id;</span>
+<span class="cstat-no" title="statement not covered" >        this.comment.userId = tokenStorage.getUser().id;</span>
 <span class="cstat-no" title="statement not covered" >        this.commentsService.createComment(this.comment)</span>
           .subscribe(<span class="fstat-no" title="function not covered" >res </span>=&gt; {
 <span class="cstat-no" title="statement not covered" >            this.router.navigate(["comments"]);</span>

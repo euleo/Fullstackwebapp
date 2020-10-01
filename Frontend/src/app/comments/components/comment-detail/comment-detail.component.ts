@@ -4,6 +4,7 @@ import { CommentsService } from '../../comments.service';
 import { Observable } from 'rxjs';
 import { Comment } from '../../../models/comment';
 import { UsersService } from '../../../users/users.service';
+import { TokenStorage } from 'src/app/token.storage';
 
 @Component({
   selector: 'app-comment-detail',
@@ -17,7 +18,8 @@ export class CommentDetailComponent implements OnInit {
   constructor(private router: Router,
     private route: ActivatedRoute,
     private commentsService: CommentsService,
-    private usersService: UsersService) { }
+    private usersService: UsersService,
+    private tokenStorage: TokenStorage) { }
 
   ngOnInit() {
     this.comment = new Comment();
@@ -41,7 +43,7 @@ export class CommentDetailComponent implements OnInit {
           });
       } else {
         //add
-        this.comment.userId = this.usersService.loggedUser.id;
+        this.comment.userId = this.tokenStorage.getUser().id;
         this.commentsService.createComment(this.comment)
           .subscribe(res => {
             this.router.navigate(["comments"]);

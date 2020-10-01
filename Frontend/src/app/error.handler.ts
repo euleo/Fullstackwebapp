@@ -11,7 +11,7 @@ export class ErrorHandlerImpl implements ErrorHandler {
   }
 
   handleError(error: any | HttpErrorResponse): void {
-    alert(error.error.details);
+    // alert(error.error.details);
     if (error instanceof HttpErrorResponse) {
       if (error.status === 401) {
         alert('Unauthorized!');

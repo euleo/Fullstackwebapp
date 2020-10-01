@@ -195,7 +195,7 @@ export class CommentsListComponent implements OnInit {
     private <span class="cstat-no" title="statement not covered" >usersService: U</span>sersService) { }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  ngOnInit(</span>) {
-<span class="cstat-no" title="statement not covered" >    if(this.usersService.loggedUser.role === "admin"){</span>
+<span class="cstat-no" title="statement not covered" >    if(tokenStorage.getUser().role === "admin"){</span>
 <span class="cstat-no" title="statement not covered" >      this.showButton = true;</span>
     }
     
@@ -227,7 +227,7 @@ export class CommentsListComponent implements OnInit {
   }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  myProfile(</span>) {
-<span class="cstat-no" title="statement not covered" >    this.router.navigateByUrl('/users/' + this.usersService.loggedUser.id);</span>
+<span class="cstat-no" title="statement not covered" >    this.router.navigateByUrl('/users/' + tokenStorage.getUser().id);</span>
   }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  logout(</span>){

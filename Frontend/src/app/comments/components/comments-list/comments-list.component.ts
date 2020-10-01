@@ -3,6 +3,7 @@ import { CommentsService } from '../../comments.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Comment } from '../../../models/comment';
 import { UsersService } from '../../../users/users.service';
+import { TokenStorage } from 'src/app/token.storage';
 
 @Component({
   selector: 'app-comments-list',
@@ -16,24 +17,19 @@ export class CommentsListComponent implements OnInit {
 
   constructor(private commentService: CommentsService,
     private router: Router,
-    private usersService: UsersService) { }
+    private usersService: UsersService,
+    private tokenStorage: TokenStorage) { }
 
   ngOnInit() {
-    if(this.usersService.loggedUser.role === "admin"){
+    if (this.tokenStorage.getUser().role === "admin") {
       this.showButton = true;
     }
-    
+
     this.loadComments();
   }
 
   loadComments() {
     this.commentService.getAllComments().subscribe(res => {
-
-      for (let i = 0; i < res.length; i++) {
-        let tmpDate = res[i].created_at.split("T");
-        res[i].created_at = tmpDate[0] + " " + tmpDate[1].split(".")[0];
-      }
-
       this.comments = res;
     });
   }
@@ -51,14 +47,14 @@ export class CommentsListComponent implements OnInit {
   }
 
   myProfile() {
-    this.router.navigateByUrl('/users/' + this.usersService.loggedUser.id);
+    this.router.navigateByUrl('/users/' + this.tokenStorage.getUser().id);
   }
 
-  logout(){
+  logout() {
     this.router.navigateByUrl('/logout');
   }
 
-  goToUsers(){
+  goToUsers() {
     this.router.navigateByUrl('/users');
   }
 }

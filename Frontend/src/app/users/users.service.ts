@@ -12,7 +12,6 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UsersService {
-  public loggedUser: User;
   private readonly usersApiUrl = `${environment.apiUrl}/users`;
 
   constructor(private http: HttpClient) { }

@@ -159,8 +159,8 @@ export class UsersListComponent implements OnInit {
 <span class="fstat-no" title="function not covered" >  save(</span>user: User){
 <span class="cstat-no" title="statement not covered" >    this.usersService.updateUser(user)</span>
     .subscribe(<span class="fstat-no" title="function not covered" >res </span>=&gt; {
-<span class="cstat-no" title="statement not covered" >      if(user.id == this.usersService.loggedUser.id){</span>
-<span class="cstat-no" title="statement not covered" >        this.usersService.loggedUser.role = user.role;      </span>
+<span class="cstat-no" title="statement not covered" >      if(user.id == tokenStorage.getUser().id){</span>
+<span class="cstat-no" title="statement not covered" >        tokenStorage.getUser().role = user.role;      </span>
       }
 <span class="cstat-no" title="statement not covered" >      this.router.navigate(["comments"]);</span>
     });

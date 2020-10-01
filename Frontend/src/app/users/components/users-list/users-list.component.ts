@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../../users.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../../models/user';
+import { TokenStorage } from 'src/app/token.storage';
 
 @Component({
   selector: 'app-users-list',
@@ -14,7 +15,8 @@ export class UsersListComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private usersService: UsersService) { }
+    private usersService: UsersService,
+    private tokenStorage: TokenStorage) { }
 
   ngOnInit() {
     this.loadUsers();
@@ -29,8 +31,8 @@ export class UsersListComponent implements OnInit {
   save(user: User){
     this.usersService.updateUser(user)
     .subscribe(res => {
-      if(user.id == this.usersService.loggedUser.id){
-        this.usersService.loggedUser.role = user.role;      
+      if(user.id == this.tokenStorage.getUser().id){
+        this.tokenStorage.getUser().role = user.role;      
       }
       this.router.navigate(["comments"]);
     });

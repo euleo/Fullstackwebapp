@@ -37,7 +37,8 @@ export class LoginComponent implements OnInit {
           if (response && response.token) {
             const rawtoken = response.token;
             this.tokenStorage.saveToken(rawtoken);
-            this.userService.loggedUser = this.jwtHelperServive.decodeToken(rawtoken);
+            let user :any = this.jwtHelperServive.decodeToken(rawtoken);
+            this.tokenStorage.saveUser(user);
             this.router.navigateByUrl('/comments');
           } else {
             alert("Authentication Error");
