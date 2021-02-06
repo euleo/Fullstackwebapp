@@ -1,14 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService } from './login.service';
-
-import { ActivatedRoute } from '@angular/router';
-
-import { MatDialog } from '@angular/material';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { TokenStorage } from '../token.storage';
 import { UsersService } from '../users/users.service';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
